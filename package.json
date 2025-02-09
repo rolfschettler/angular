@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:test": "node dist/test/server/server.mjs"
+    "serve:ssr:test": "node dist/test/server/server.mjs",
+    "build_lib": "ng build --project=lib",
+    "build_test": "ng build --project=test --configuration production --aot --output-hashing=all --base-href /test/",
+    "build_all": "npm run build_lib && npm run build_test"
   },
   "private": true,
   "dependencies": {
