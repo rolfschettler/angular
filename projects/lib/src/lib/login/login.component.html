@@ -1,0 +1,66 @@
+
+
+
+<div style="max-width: 370px;margin:auto;border:1px solid silver" class=" mt-4 mat-elevation-z2">
+
+    <form [formGroup]="Form" style="margin: 0px 15px 0px 15px" (submit)="doLogin()">
+
+
+        <div class="row" style="margin: 0 -15px 0 -15px;">
+            <div class="col customcolor">
+                <h2 style="margin:0px; text-align: center">Anmelden</h2>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+        <div class="row  px-4 warncolor">
+            {{message}}
+        </div>
+        <!--row-->
+
+        <div class="row px-4 mt-2">
+            <div class="col">
+                <!--email -->
+                <mat-form-field class="full-width" id="email">
+                    <input matInput placeholder="E-Mail" formControlName="email"
+                        maxlength="255" autocomplete="OFF">
+                    <mat-error *ngIf="Form.controls['email'].hasError('required')">
+                        E-Mail: Pflichtfeld
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+        <div class="row px-4 mt-2">
+            <div class="col">
+                <!--password -->
+                <mat-form-field class="full-width" id="password">
+                    <input matInput type="password" placeholder="Passwort" formControlName="password"
+                        maxlength="255" autocomplete="OFF" >
+                    <mat-error *ngIf="Form.controls['password'].hasError('required')">
+                        Passwort: Pflichtfeld
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+        <div class="row">
+            <div class="col" style="text-align: right;">
+                <button [disabled]="loading" type="submit" mat-fab color="primary" class="mb-2">
+                    <mat-icon>check</mat-icon>
+                </button>
+            </div>
+            <!--col-->
+
+        </div>
+        <!--row-->
+
+
+    </form>
+</div>

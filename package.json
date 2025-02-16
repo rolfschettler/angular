@@ -9,22 +9,26 @@
     "test": "ng test",
     "serve:ssr:test": "node dist/test/server/server.mjs",
     "build_lib": "ng build --project=lib",
-    "build_test": "ng build --project=test --configuration production --aot --output-hashing=all --base-href /test/",
-    "build_all": "npm run build_lib && npm run build_test"
+    "build_vorlage": "ng build --project=vorlage --configuration production --aot --output-hashing=all --base-href /vorlage/",
+    "build_all": "npm run build_lib && npm run build_vorlage"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",
+    "@angular/cdk": "^19.1.3",
     "@angular/common": "^19.1.0",
     "@angular/compiler": "^19.1.0",
     "@angular/core": "^19.1.0",
     "@angular/forms": "^19.1.0",
+    "@angular/material": "^19.1.3",
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/platform-server": "^19.1.0",
     "@angular/router": "^19.1.0",
     "@angular/ssr": "^19.1.5",
+    "@auth0/angular-jwt": "^5.2.0",
     "express": "^4.18.2",
+    "material-icons": "^1.13.14",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

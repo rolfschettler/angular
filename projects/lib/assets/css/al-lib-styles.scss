@@ -1,0 +1,28 @@
+.customdialog {
+  /*  dialogConfig.panelClass='customdialog'; (Mat-Dialog-Panel) */
+  mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+/*Die Klasse für den App-Header*/
+.main-header__brand {
+  display: flex;
+  background-color: var(--cibackgroundcolor) !important;
+  color: var(--cicolor) !important;
+  max-height: var(--topspace);
+  min-height: var(--topspace);
+  line-height: var(--topspace);
+  overflow: hidden;
+  justify-content: left;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
+
+@media (max-width: 576px) {
+  //Ab 576px und kleiner ist der Header nicht mehr "sticky" und wird ggf. aus dem Fenster gescrollt
+  .main-header__brand {
+    position: relative;
+  }
+}

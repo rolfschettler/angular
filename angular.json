@@ -36,43 +36,50 @@
         }
       }
     },
-    "test": {
+    "vorlage": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/test",
-      "sourceRoot": "projects/test/src",
+      "schematics": {},
+      "root": "projects/vorlage",
+      "sourceRoot": "projects/vorlage/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/test",
-            "index": "projects/test/src/index.html",
-            "browser": "projects/test/src/main.ts",
+            "outputPath": "dist/vorlage",
+            "index": "projects/vorlage/src/index.html",
+            "browser": "projects/vorlage/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/test/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "tsConfig": "projects/vorlage/tsconfig.app.json",
             "assets": [
+
               {
                 "glob": "**/*",
-                "input": "projects/test/public"
+                "input": "projects/lib/assets",
+                "output": "/assets/"
+              },
+
+              {
+                "glob": "**/*",
+                "input": "projects/vorlage/src/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/vorlage/public",
+                 "output": "/assets/"
               }
+             
+
             ],
             "styles": [
-              "projects/test/src/styles.scss"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "projects/styles/styles.scss",
+              "projects/vorlage/src/styles.css"
             ],
-            "scripts": [],
-            "server": "projects/test/src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "projects/test/src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -102,10 +109,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "test:build:production"
+              "buildTarget": "vorlage:build:production"
             },
             "development": {
-              "buildTarget": "test:build:development"
+              "buildTarget": "vorlage:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -120,21 +127,28 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/test/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
+            "tsConfig": "projects/vorlage/tsconfig.spec.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/test/public"
-              }
+                "input": "projects/vorlage/src/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/dist/lib/assets",
+                "output": "/assets/"
+              }              
             ],
             "styles": [
-              "projects/test/src/styles.scss"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "projects/vorlage/src/styles.css"
             ],
             "scripts": []
           }
         }
       }
     }
+   
   }
 }

@@ -1,0 +1,49 @@
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  overflow: hidden;
+}
+
+.with-sidebar > :first-child {
+  flex-basis: 40px;
+  flex-grow: 1;
+  background-color: #e7e7e7;
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: 50%;
+
+  max-height: 100vh;
+  overflow: auto;
+
+  //overflow-y: scroll;
+  overflow-y: auto; /*???*/
+
+  overflow-x: hidden; /*???*/
+}
+
+/*Primärer Sidebar*/
+
+.sidenav-container {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sbar {
+  background-color: var(--cibackgroundcolor) !important;
+  color: white;
+  z-index: 11;
+  min-height:100vh;
+  min-width:var(--sbarwidth);
+  max-width:var(--sbarwidth);
+  overflow-x: hidden;
+
+}
+

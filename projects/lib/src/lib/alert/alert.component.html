@@ -1,0 +1,2 @@
+<div style="position:fixed;bottom:0;z-index: 1020;width:100%" class="  text-white text-center" *ngIf="message" [ngClass]="{ 'bg-info': message, 'bg-success': message.type === 'success', 'bg-danger': message.type === 'error' }">
+    {{message.text}}</div>
