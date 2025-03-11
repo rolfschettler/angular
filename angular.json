@@ -12,6 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
+
             "project": "projects/lib/ng-package.json"
           },
           "configurations": {
@@ -52,7 +53,13 @@
             "polyfills": [
               "zone.js"
             ],
+
+            "allowedCommonJsDependencies": [
+              "moment"
+           ],
+
             "tsConfig": "projects/vorlage/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
 
               {
@@ -75,9 +82,9 @@
 
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
+            
               "projects/styles/styles.scss",
-              "projects/vorlage/src/styles.css"
+              "projects/vorlage/src/styles.scss"
             ],
             "scripts": []
           },
@@ -86,8 +93,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -107,6 +114,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": { "proxyConfig": "proxy.conf.json" },
           "configurations": {
             "production": {
               "buildTarget": "vorlage:build:production"
@@ -142,7 +150,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "projects/vorlage/src/styles.css"
+              "projects/vorlage/src/styles.scss"
             ],
             "scripts": []
           }

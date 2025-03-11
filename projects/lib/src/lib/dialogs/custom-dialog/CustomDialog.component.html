@@ -1,0 +1,60 @@
+<div class="dialog-title">
+   {{title}} 
+</div>
+
+<div class="dialog_container">
+
+
+  <ng-container *ngIf="array">
+    <div class="container-fluid">
+      <div class="row" *ngFor="let object of array; index as i">
+
+        <!--        <div class="col-sm-4 offset-sm-1 label_fields">-->
+        <div class="col-12" style="min-width: 190px;overflow-x: hidden;">
+          {{object.label}}:
+        </div>
+
+        <div class="col-12">
+          <select style="max-width: 100%" *ngIf="checkIfArray(object.type) && !checkIfArrayOfObject(object.type) "
+            class="alinput" name="select_box" [(ngModel)]="object.value" (blur)="errorCheckOnBlur(i)">
+            <option *ngFor="let option of object.type" (value)="option">
+              {{option}}
+            </option>
+          </select>
+
+
+          <select style="max-width: 100%" *ngIf="checkIfArray(object.type) && checkIfArrayOfObject(object.type) "
+            class="alinput" name="select_box" [(ngModel)]="object.value" (blur)="errorCheckOnBlur(i)">
+            <option *ngFor="let option of object.type" [value]="option['key']">
+              {{option['value']}}
+            </option>
+          </select>
+
+
+          <input style="max-width: 100%" *ngIf="!checkIfArray(object.type)" class="alinput" [(ngModel)]="object.value"
+            [type]="object.type" (blur)="errorCheckOnBlur(i)">
+
+          <div class=" error_message" [class.transition_error_message]="checkInvalidity(i)">
+            {{object.label}}: Pflichfeld!
+          </div>
+
+        </div>
+        <!--
+        <div class="col-sm-3 offset-sm-1  error_message" [class.transition_error_message]="checkInvalidity(i)">
+          {{object.label}}: Pflichfeld!
+        </div> -->
+
+      </div>
+    </div>
+  </ng-container>
+
+
+  <div class="buttons_bar">
+    <!-- <button class="buttons" (click)="dialogCancel()"> <mat-icon> close </mat-icon> <span>Abbrechen</span> </button>
+    <button class="buttons" (click)="dialogSubmit()"> <mat-icon> check </mat-icon> <span>Fortfahren</span> </button> -->
+
+    <button mat-raised-button (click)="dialogCancel()"> <mat-icon> close </mat-icon> <span>Abbrechen</span> </button>
+    <button mat-raised-button (click)="dialogSubmit()"> <mat-icon> check </mat-icon> <span>Fortfahren</span> </button>
+
+
+  </div>

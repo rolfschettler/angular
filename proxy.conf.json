@@ -1,0 +1,8 @@
+{
+    "/dataapi": {
+      "target": "http://localhost",
+      "secure": false
+     
+    }
+
+  }

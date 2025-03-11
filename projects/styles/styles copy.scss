@@ -1,0 +1,563 @@
+
+
+
+:root {
+  --topspace: 42px;
+  --mat-toolbar-height: 64px; //Die Höhe des MAT-TOOLBAR aud MAT-Theme
+
+  --backgroundcolor: #fafafa;
+
+  //#22577cf7;!!!!!
+  //--cibackgroundcolor: #b71547;
+
+  //--cisecondarybackground: #b715471a;
+
+  //primary : #0776c5;
+  //background-image: linear-gradient(to bottom, #22577c, #44528c, #74458a, #9f2d72, #b71547);
+
+  --cibackgroundcolor: #22577cf7;
+  --cisecondarybackground: #709ebf87;
+  --cicolor: #fff;
+  --cisecondarycolor: black;
+
+  --titlescolor: #2d2d2d;
+  --titlesbackgroundcolor: #c3c3c3;
+  --toolbarbackground: #ededed;
+
+  --hovercolor: rgba(
+    176,
+    226,
+    250,
+    0.514
+  ); //Farbe bei Hover über einem Listenelement
+  --selectedcolor: #9ebcff; //Farbe bei einem ausgewählten Listenelement
+  --selectedhovercolor: #3a5ca959; //Farbe bei Hover+Selected über einem Listenelement
+
+  --accentcolor: red;
+  --alertcolor: #40b3ff;
+
+  --sbarwidth: 42px; //Die Breite des linken Rahmens (Sidebar zugeklappt)
+}
+
+.cibackground-color {
+  background-color: var(--cibackgroundcolor);
+}
+
+.cicolor {
+  color: var(--cicolor);
+}
+
+.under-top-bar {
+  position: sticky;
+  top: var(--topspace);
+}
+
+.maxwidth,
+.max-width {
+  width: 100%;
+}
+
+
+@import "material-icons/iconfont/material-icons.css";
+
+/*Der Container, der die gesamte APP umschließt*/
+.sidenav-container {
+  max-width: 1920px;
+  overflow: hidden;
+  border-right: 1px solid var(--cibackgroundcolor);
+  //margin-left: auto;
+  //margin-right: auto;
+}
+
+/*Der Sidebar*/
+.sidenav {
+  width: 300px !important;
+}
+
+.logo {
+  display: flex;
+  height: 64px;
+  margin-top: 12px;
+  background-color: var(--cibackgroundcolor);
+}
+
+/* Data-AL CI */
+.sidenav .mat-toolbar {
+  background-color: var(--cibackgroundcolor) !important;
+  color: var(--cicolor) !important;
+  min-height: var(--topspace) !important;
+  max-height: var(--topspace) !important;
+}
+
+/*Die Klasse für den App-Header*/
+.main-header__brand {
+  display: flex;
+  background-color: var(--cibackgroundcolor) !important;
+  color: var(--cicolor) !important;
+  max-height: var(--topspace);
+  min-height: var(--topspace);
+  line-height: var(--topspace);
+  overflow: hidden;
+  justify-content: left;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
+
+@media (max-width: 576px) {
+  //Ab 576px und kleiner ist der Header nicht mehr "sticky" und wird ggf. aus dem Fenster gescrollt
+  .main-header__brand {
+    position: relative;
+  }
+}
+
+//Ab hier die Klassen für die Dartstellung des Standard-Fensters (siehe Home.component.html)
+
+//Der Toolbar am oberen Rand (das erste Element)
+.app_container-topbar {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  //height: var(--topspace);
+  width: 100%;
+  min-height: var(--topspace);
+  background-color: var(--toolbarbackground);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  flex-direction: row;
+}
+
+@media (max-width: 992px) {
+  .app_container-topbar {
+    // ab 567px und kleiner, wird der Toolbar nur noch einzeilig, vertikal scrollbar angezeigt
+    
+     flex-wrap: nowrap;
+     overflow-x: auto;
+  }
+}
+
+//Der Haupcontainer (das zweite Element)
+.app_container {
+  display: flex;
+  flex-direction: column;
+  //max-width: 100%;
+  //overflow-x: hidden;
+}
+
+
+//Der Inhalt des Haupcontainer "app_container_content2 (das dritte Element, füllt den Fensterbereich zu 100% aus)
+.app_container_content {
+  position: absolute;
+  height: calc(100% - var(--topspace));
+  width: calc(100% - var(--sbarwidth));
+}
+@media (max-width: 992px) {
+  .app_container_content{
+        width: 100%;
+      }
+}
+
+/********Beispiel**********************************************************
+<div class="app_container">
+    <div class="app_container_content">
+        <!--Hier der Hauptcontent-->
+        <div style="border:1px solid red;min-height:100%; max-height:100%;min-width:100%;  max-width:100%;overflow: auto; display: flex;">
+        Beliebiger Inhalt.......
+        </div>
+    </div>
+</div>
+**************************************************************************/
+
+
+
+// Der Toolbar am unteren Rand (das letzte Element innerhalb von "app_container"
+.app_bottombar {
+  position: sticky;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  border-top: 1px solid silver;
+  background-color: var(--toolbarbackground);
+}
+
+/************************************************************************
+AB HIER EIN TEMPLATE FÜR EIN STANDARDFENSTER :
+
+<div style="height: calc(100% - var(--topspace) - var(--topspace)   );overflow-x: auto;">
+    <div class="app_container-topbar">
+        Hier der Inhalt des oberen Toolbars (Toolbar ist optional)
+    </div>
+    <!-- Die Toolbar Componente (optional, siehe "al-lib" -> toolbar.component.ts) -->
+    <toolbar> </toolbar>
+
+
+    <!-- Hier folgt ein beliebiger Content-->
+    <div>
+
+        Bla Bla Bla Bla Bla BlaBla Bla Bla
+        
+    </div>
+    fertig
+
+</div>
+
+<div class="app_bottombar" style="height:41px;display:flex">
+    Hier der Inhalt des unteren Toolbars (unterer Toolbar optional)
+</div>
+
+
+
+
+*********************************************************************/
+
+/* Sidebardarstellung*/
+
+.navbar.fixed-top .container-fluid {
+  background-color: var(--cibackgroundcolor);
+  color: var(--cicolor);
+}
+
+@media (max-width: 992px) {
+  .sbar {
+    height: var(--topspace);
+    position: absolute !important;
+    min-height: initial !important;
+  }
+}
+
+/* ---Grundeinstellungen--- */
+html,
+body {
+  height: 100%;
+  overscroll-behavior: contain;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: var(--backgroundcolor);
+  width: 100%;
+  height: 100%;
+  /*border-top: 1px solid black;*/
+  font-size: 1em;
+
+  /* WICHTIG:: Refresh auf mobilen Displays abschalten */
+  overscroll-behavior: contain;
+  /* Textselektion abschalten */
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by any browser but < IE9 */
+}
+
+.allowselect {
+  /*ermöglicht das markieren von Text*/
+  -webkit-touch-callout: text;
+  /* iOS Safari */
+  -webkit-user-select: text;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: text;
+  /* Konqueror */
+  -moz-user-select: text;
+  /* Firefox */
+  -ms-user-select: text;
+  /* Internet Explorer/Edge */
+  user-select: text;
+  /* Non-prefixed version, currently supported by any browser but < IE9 */
+}
+
+@import "bootstrap-grid.css";
+@import "bootstrap-utilities.css";
+
+@import "fonts/fonts.css";
+
+/*Klassen für Formulare*/
+
+.full-width {
+  width: 100%;
+}
+
+.form-small {
+  padding: 24px;
+  max-width: 576px;
+}
+
+/*Material Anpassungen*/
+
+.smalltab .mat-tab-label {
+  min-width: 72px !important;
+}
+
+.tooltip-fullwidth {
+  //Mat-Tooltip, Mehrzeilig, volle Breite
+  // Anwendung: matTooltipClass="tooltip-fullwidth"
+
+  white-space: pre-line; //Zeilenumbruch bei "cr" (\n)
+  max-width: unset !important; //Breite unlimitiert
+}
+
+.tooltip-fullwidth-bigfont {
+  //Mat-Tooltip, Mehrzeilig, volle Breite
+  // Anwendung: matTooltipClass="tooltip-fullwidth"
+
+  white-space: pre-line; //Zeilenumbruch bei "cr" (\n)
+  max-width: unset !important; //Breite unlimitiert
+  font-size: small;
+}
+
+.tooltip-bigfont {
+  //Mat-Tooltip, große Schrift
+  // Anwendung: matTooltipClass="tooltip-bigfont"
+  font-size: small;
+}
+
+.tooltip-error {
+  //Mat-Tooltip, große Schrift, roter Hintegrund
+  // Anwendung: matTooltipClass="tooltip-error"
+
+  font-size: small;
+  background-color: red;
+}
+
+.mat-select-panel .mat-optgroup-label {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.mat-select-large {
+  /*panelClass für mat-select , grosse Höhe*/
+  max-height: 80vh !important;
+}
+
+.mat-select-extrawidth {
+  /*panelClass für mat-select , grosse Breite*/
+  min-width: 90vw !important;
+}
+
+.mat-select-multiline span.mat-select-value-text {
+  white-space: normal ;
+}
+
+.mat-select-multiline >div.mat-select-trigger > div.mat-select-value > span.mat-select-value-text {
+  white-space: normal;
+  overflow: visible ;
+  text-overflow: clip ;
+}
+
+
+@media (min-width: 992px) {
+  .mat-select-extrawidth {
+    min-width: 700px !important;
+  }
+}
+
+
+
+.lowspace .mat-radio-label-content  {
+  padding-left: 2px !important;
+  padding-right: 6px !important;
+}
+
+.customdialog {
+  /*  dialogConfig.panelClass='customdialog'; (Mat-Dialog-Panel) */
+  mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+.customfullscreendialog {
+  /*  dialogConfig.panelClass='customfullscreendialog'; (Mat-Dialog-Panel) */
+  mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+
+    overscroll-behavior: contain;
+
+    width: 90vw;
+    height: 90vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .customfullscreendialog {
+    mat-dialog-container {
+      width: 100vw;
+      height: 90vh;
+    }
+  }
+}
+
+.al-stepper .mat-step-header[aria-selected="true"] {
+  border-radius: 4px;
+  height: 34px !important;
+  background-color: var(--toolbarbackground) !important;
+}
+.al-stepper.mat-stepper-horizontal,
+.al-stepper.mat-stepper-vertical {
+  background-color: var(--backgroundcolor) !important;
+}
+
+.invisiblearrow .mat-select-arrow {
+  //Den "Pfeil" bei SELECT INPUT ausblenden
+  display: none;
+}
+
+.rectangle .mat-radio-outer-circle {
+  border-radius: 0% !important; //Rechteckige RadioButtons
+}
+
+.rectangle
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: gray; //Rechteckige RadioButtons
+}
+
+.selectformularClass .mat-option {
+  /* Mat-Select Auswahlliste für Formularauswahl beim Drucken*/
+  background-color: var(--selectedcolor);
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+
+.mat-option.emailbutton {
+  background-color: #ebebeb;
+  color: black;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+.selectformularClass .mat-option.emailbutton:hover {
+  background-color: #ebebeb;
+}
+
+/*
+.selectformularClass .mat-option:before {
+  content: "";
+  display: inline-block;
+  background: url(/assets/img/print24.ico) no-repeat;
+  width: 24px;
+  background-size: contain;
+  height: 24px;
+}
+*/
+
+.selectformularClass .mat-option:hover {
+  /* Mat-Select::hover Auswahlliste für Formularauswahl beim Drucken*/
+  background-color: rgb(119, 167, 255);
+}
+
+/* Material Time/Date Felder, geringe Höhe */
+.mat-input-element[type="date"].lowheight,
+.mat-input-element[type="datetime"].lowheight,
+.mat-input-element[type="datetime-local"].lowheight,
+.mat-input-element[type="month"].lowheight,
+.mat-input-element[type="week"].lowheight,
+.mat-input-element[type="time"].lowheight {
+  line-height: 1em;
+  padding: 2px 0px;
+  max-height: 12px;
+}
+
+/* Content ::after rücksetzen */
+.mat-input-element[type="date"]::after,
+.mat-input-element[type="datetime"]::after,
+.mat-input-element[type="datetime-local"]::after,
+.mat-input-element[type="month"]::after,
+.mat-input-element[type="week"]::after,
+.mat-input-element[type="time"]::after {
+  content: "" !important;
+}
+
+/*Mat-Menu Items ohne Paddin*/
+/*Bsp.:  <mat-menu #menu="matMenu" class="nopadding">*/
+.nopadding .mat-menu-content:not(:empty) {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/*Standard Eingabefelder*/
+input[type="text"].alinput,
+input[type="date"].alinput,
+input[type="number"].alinput,
+input[type="time"].alinput,
+input[type="datetime-local"].alinput,
+input[type="color"].alinput,
+input[type="password"].alinput,
+select.alinput {
+  font-family: "roboto";
+  width: 100%;
+  padding: 4px 4px;
+  line-height: 2em;
+  height: 2em;
+  max-height: 2em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  max-width: 12em;
+  font-size: 1em;
+}
+
+input[type="text"].alinput:focus-visible,
+input[type="date"].alinput:focus-visible,
+input[type="datetime-local"].alinput:focus-visible,
+input[type="number"].alinput:focus-visible,
+input[type="time"].alinput:focus-visible,
+input[type="color"].alinput:focus-visible,
+input[type="password"].alinput:focus-visible,
+select.alinput:focus-visible {
+  outline: none;
+}
+
+//FileUploadButton
+input::file-selector-button {
+  padding: 0.7em;
+  border: 1px solid silver;
+  border-radius: 3px;
+  background-color: white;
+}
+
+input::file-selector-button:hover {
+  background-color: var(--toolbarbackground);
+}
+
+.cdk-parent {
+  pointer-events: none !important;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cdk-parent-background {
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+.cdk-parent-background2 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 6px solid #673ab7;
+  /* alternate border-color for four different sides */
+  border-color: #673ab7 transparent #673ab7 transparent;
+  animation: rotate 1.5s linear infinite;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

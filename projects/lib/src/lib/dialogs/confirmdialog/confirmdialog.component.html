@@ -1,0 +1,44 @@
+
+<!-- <h2 mat-dialog-title class="error-title">{{type==='warning'?'Warnung':'Hinweis'}}</h2> -->
+<div mat-dialog-title   [ngClass]="{'error-title': type==='warning'}" >{{type==='warning'?'Warnung':'Hinweis'}}</div>
+
+
+
+
+
+<mat-dialog-content [ngClass]="{'error-container': type==='warning'}">
+  <p style="white-space: pre-line" [class.warning]="type === 'warning'"> {{message}} </p>
+</mat-dialog-content>
+
+<mat-dialog-actions [ngClass]="{'error-container': type==='warning'}">
+  <button type="button" mat-raised-button color="primary" (click)="close(true)">Ok</button>
+</mat-dialog-actions>
+
+
+
+<!--
+
+https://www.techiediaries.com/angular-material-dialogs/
+
+ import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+  import { ConfirmdialogComponent } from '....';
+  .
+  .
+
+   constructor(  private dialog:MatDialog) { }
+.
+.
+
+ const dialogConfig = new MatDialogConfig();
+ dialogConfig.data = 'Alles klar';
+ let dialogRef = this.dialog.open(ConfirmdialogComponent, dialogConfig);
+
+
+ODER (als "Warnung")
+const dConfig = new MatDialogConfig();
+dConfig.data={message: 'Achtung Fehler.',type:'warning'};
+this.dialog.open(ConfirmdialogComponent, dConfig)
+
+
+
+-->

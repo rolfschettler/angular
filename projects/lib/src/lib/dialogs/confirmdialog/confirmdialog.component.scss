@@ -1,0 +1,12 @@
+.error-container {
+    background-color: var(--mat-sys-error-container);
+    color: var(--mat-sys-on-error-container);
+  }
+  
+  .error-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mat-sys-error);
+    color: var(--mat-sys-on-error);
+  }

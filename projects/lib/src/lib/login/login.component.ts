@@ -1,31 +1,42 @@
 import { DbconfigService } from './../common/dbconfig.service';
 
-
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AuthenticationService } from '../common/authentication.service';
-
-
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  standalone: false,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatButtonModule,
+  ],
 })
 export class LoginComponent implements OnInit {
-
   loading = false;
   message = '';
-  
-  
 
   Form = this.formBuilder.group({
     email: ['', Validators.required],
-    password: ['', Validators.required]
-
+    password: ['', Validators.required],
   });
 
   returnUrl: string;
@@ -36,53 +47,39 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-    private config:DbconfigService
-  ) { 
-
-
-    
-  }
-
-
+    private config: DbconfigService
+  ) {}
 
   doLogin() {
-
     if (this.Form.invalid) {
       return;
     }
 
     this.message = '';
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.authenticationService.doLogin(this.Form.controls['email'].value, this.Form.controls['password'].value)
-      .pipe(first())
-      .subscribe(
-        user => {
-          if (user.id) {
-            localStorage.setItem('loginuser', this.Form.get('email').value); //Für eine schnelle Anmeldung speichern
-            this.router.navigateByUrl(this.returnUrl);
-          }
-          else
-            this.message = 'E-Mail oder Passwort sind nicht korrekt';
-        },
+    this.authenticationService
+      .doLogin(
+        this.Form.controls['email'].value,
+        this.Form.controls['password'].value
       )
+      .pipe(first())
+      .subscribe((user) => {
+        if (user.id) {
+          localStorage.setItem('loginuser', this.Form.get('email').value); //Für eine schnelle Anmeldung speichern
+          this.router.navigateByUrl(this.returnUrl);
+        } else this.message = 'E-Mail oder Passwort sind nicht korrekt';
+      });
   }
 
-
-
-
   ngOnInit() {
- 
     this.Form.get('email').setValue(localStorage.getItem('loginuser')); //Letzter Anmeldename laden
 
-
-    if(this.config.configuration.firmenname.toUpperCase().includes('DATA-AL')){
-      // In der DemoVersion: Benutzername und Passwort vorgeben!
-      this.Form.get('email').setValue('admin@demo.de');  
-      this.Form.get('password').setValue('admin');  
-    }
-
+    // if(this.config.configuration.firmenname.toUpperCase().includes('DATA-AL')){
+    // In der DemoVersion: Benutzername und Passwort vorgeben!
+    this.Form.get('email').setValue('admin@demo.de');
+    this.Form.get('password').setValue('admin');
+    //}
 
     this.authenticationService.doLogout();
   }
-
 }

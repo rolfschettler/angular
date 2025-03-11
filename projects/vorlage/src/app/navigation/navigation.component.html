@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/login']">
+        <div *ngIf="!(currentUser | async)">
+          <span>Login</span>
+        </div>
+
+        <div *ngIf="currentUser | async; let user">
+          <span *ngIf="user.username">Logout</span>
+          <span *ngIf="!user.username">Login</span>
+          <span style="font-size: small"> {{ user.username }} </span>
+        </div>
+      </a>
+
+      <a mat-list-item [routerLink]="['/home']">Home</a>
+      <a mat-list-item [routerLink]="['/info']">Info</a>
+      <!-- <a mat-list-item [routerLink]="['/info']" (click)="drawer.close()">Info</a> -->
+
+      <!-- <div class="logo">
+        <img src="assets/img/logo.svg" alt="Data-AL Logo" title="Data-AL" width="112px" />
+      </div> -->
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+      <span>vorlage</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+    
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

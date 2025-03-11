@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { AlertService } from './alert.service';
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -11,14 +12,15 @@ import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
   selector: 'alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
-  standalone:false
+  imports:[CommonModule]
 })
 export class AlertComponent implements OnInit,OnDestroy {
 
   private subscription: Subscription | any;
-  message: any;
+  message: any={};
 
-  constructor(private alertService: AlertService,  private dialog:MatDialog) { }
+  constructor(private alertService: AlertService)
+   { }
 
   ngOnInit() {
     this.subscription = this.alertService.getMessage().subscribe(message => {
@@ -26,7 +28,6 @@ export class AlertComponent implements OnInit,OnDestroy {
   });
 
   }
-
 
 
   ngOnDestroy() {

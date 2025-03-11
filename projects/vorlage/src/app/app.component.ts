@@ -1,50 +1,41 @@
-
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { AlertComponent, AlertModule, HeaderComponent, MaterialModule } from 'lib';
-
-
-
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-
-
+import { AuthenticationService,MaterialModule,} from 'lib';
+import { CommonModule } from '@angular/common';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,RouterLink, MaterialModule, AsyncPipe,CommonModule,HeaderComponent,AlertModule],
   templateUrl: './app.component.html',
-
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.scss'],
+  imports: [MaterialModule, CommonModule, NavigationComponent],
 })
-export class AppComponent {
-
-
-  title = 'App-vorlage';
-
-
-  
+export class AppComponent implements OnInit, AfterViewInit {
   public currentUser: Observable<any>;
-  public loggedin=''
+  public loggedin = '';
 
-  private breakpointObserver = inject(BreakpointObserver);
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private authenticationService: AuthenticationService
+  ) {
+    this.currentUser = this.authenticationService.current_User();
+    this.authenticationService.LoggedinUserSubject.subscribe((res) => {
+      this.loggedin = '' + res;
+    });
+  }
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  ngOnInit() {}
+
+  ngAfterViewInit(): void {}
+
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => result.matches),
       shareReplay()
     );
 
+  title = 'Vorlage';
 }
-
-
-
-
-

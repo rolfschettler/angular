@@ -1,0 +1,36 @@
+
+<div class="table-container">
+  <!-- Sticky Table Header -->
+  <table class="sticky-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>PLZ</th>
+        <th>Ort</th>
+        <th>Strasse</th>
+        <th>Beruf</th>
+      </tr>
+    </thead>
+  </table>
+
+  <!-- Virtuelles Scrollen für große Datenmengen -->
+  <cdk-virtual-scroll-viewport itemSize="50" class="scroll-viewport">
+    <table>
+      <tbody *cdkVirtualFor="let item of patienten | async">
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.vorname }}</td>
+          <td>{{ item.nachname }}</td>
+          <td>{{ item.plz }}</td>
+          <td>{{ item.ort }}</td>
+          <td>{{ item.strasse }}</td>
+          <td>{{ item.beruf }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </cdk-virtual-scroll-viewport>
+</div>
+
+

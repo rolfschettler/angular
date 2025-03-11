@@ -1,0 +1,41 @@
+<div mat-dialog-title style="padding:0px 20px" class="dialog-title">Bitte bestätigen</div>
+
+<mat-dialog-content class="dialog-container" >
+
+   {{message}} 
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-container">
+
+  <button mat-raised-button (click)="close(true)">Ja</button>
+  <button mat-raised-button (click)="close(false)">Nein</button>
+
+</mat-dialog-actions>
+
+
+
+
+<!--
+  https://www.techiediaries.com/angular-material-dialogs/
+
+  import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+  import { CanceldialogComponent } from '....';
+  .
+  .
+
+   constructor(  private dialog:MatDialog) { }
+
+  .
+  .
+
+ const dialogConfig = new MatDialogConfig();
+ dialogConfig.data = user.username + ' wirklich löschen ?';
+ let dialogRef = this.dialog.open(CanceldialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.dodelete(user);
+      }
+    });
+
+-->
