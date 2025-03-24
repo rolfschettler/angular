@@ -17,11 +17,6 @@ export const authenticationInterceptor: HttpInterceptorFn = (
   const authenticationService = inject(AuthenticationService);
   const userToken = authenticationService.getToken();
 
-  console.log('token', userToken);
-
-  //  const modifiedReq = req.clone({
-  //    headers: req.headers.set('Authorization', `Bearer ${userToken}`),
-  //  });
 
   const modifiedReq = req.clone({
     setHeaders: {

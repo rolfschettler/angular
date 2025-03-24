@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, EMPTY, throwError } from 'rxjs';
 import { AlertService } from '../alert/alert.service';
 
+
 export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const snackBar = inject(MatSnackBar);
@@ -26,10 +27,13 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
           //Snackbar-Fehlermeldung anzeigen
 
           if (String(message).includes('Bitte neu anmelden')) {
-            snackBar.open('Ihre Anmeldungung ist abgelaufen', 'Schließen', {
+            
+           
+            snackBar.open('Ihre Anmeldungung ist abgelaufen, Bitte neu anmelden', 'Schließen', {
               duration: 5000,
               panelClass: ['error-snackbar'],
             });
+             router.navigate(['login']);
           } else {
             alertservice.error(message);
             return throwError(() => new Error(message)); //Fehler wird weiter gereicht

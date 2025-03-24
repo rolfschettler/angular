@@ -3,6 +3,10 @@
  */
 
 
+//customlib
+export * from './lib/common/pwdhash';
+
+
 export * from './lib/common/dbconfig.service';
 
 

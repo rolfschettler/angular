@@ -51,7 +51,8 @@
             "index": "projects/vorlage/src/index.html",
             "browser": "projects/vorlage/src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
 
             "allowedCommonJsDependencies": [
@@ -133,7 +134,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "projects/vorlage/tsconfig.spec.json",
             "assets": [

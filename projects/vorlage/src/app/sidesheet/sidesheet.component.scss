@@ -1,0 +1,63 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+
+
+.example-container {
+  position: absolute;
+  top: Calc(var(--mat-toolbar-standard-height, 64px) * 2);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 12px;
+}
+
+
+.innercontainer {
+
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0;
+  border-radius: var(--mat-sys-corner-medium);
+
+  background-color: var(--mdc-elevated-card-container-color,
+      var(--mat-sys-surface-container-low));
+  border-color: var(--mdc-elevated-card-container-color,
+      var(--mat-sys-surface-container-low));
+  border-radius: var(--mdc-elevated-card-container-shape,
+      var(--mat-sys-corner-medium));
+  box-shadow: var(--mdc-elevated-card-container-elevation,
+      var(--mat-sys-level1));
+
+  margin: 0 16px 0 0;
+  padding: 16px;
+
+
+}
+
+
+.sidenav {
+  padding: 24px;
+  border: 1px solid var(--mat-sidenav-container-background-color, var(--mat-sys-surface));
+  border-radius: var(--mat-sys-corner-medium);
+  max-width: 100%;
+
+}
+
+
+
+.example-toolbar {
+
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+
+.sidesheetbar {
+  font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: auto;
+}

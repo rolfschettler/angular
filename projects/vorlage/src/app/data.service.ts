@@ -34,9 +34,6 @@ export class DataService {
 
 
 getUsers() {
-  
-console.log( this.config.url);
-
   let param = "?operation=encselect";
   let sql={ 
     sql:'X0OgV+tB6P6RMZVF.zkLJ1wQe56lw8x2tdEAwZYHHPec=.OQ3m1o9LAZXBZB0AfxQavQ==',

@@ -69,7 +69,7 @@ export class AuthenticationService {
       }
     }))
   }
- 
+
 
 
   public getToken() {
@@ -97,49 +97,21 @@ export class AuthenticationService {
   getUserFromToken(token): Observable<User> {
     const helper = new JwtHelperService();//https://github.com/auth0/angular2-jwt
     let id = 0;
-console.log(token)
+
     if (!token)
       return of(this.emptyUser());//Leeres UserObject
     id = helper.decodeToken(token).id;
-
-console.log(helper.decodeToken(token));    
     let param = "?operation=getuserinfo";
     let queryurl = this.config.url + param;
     let data = { 'id': id }
-console.log('data:',data,'queryurl:',queryurl);    
-
-//Abgelaufener Token:
-//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwMDAwMDAwMDAiLCJleHAiOjE3NDA4OTU1OTB9.4AaGSbFXkbW8nISJ1qVQcTx-kthLQiBDlx0-dvhL16s
 
 
-/*
-    return this.http.post<User>(queryurl, data).pipe(
-      map(res => {
-        console.log(res)
-
-        if (!res['data'][0]) {
-          //User ist nicht mehr vorhanden, obwohl ein gültiges Token gesetzt. (Zwischenzeitlich aus der Datenbank gelöscht...)
-          localStorage.removeItem('token'); //Token entfernen
-          this.currentUserSubject.next(this.emptyUser()); //Leeren User an CurrentUser zurückgeben
-          this.LoggedinUserSubject.next(false); //Login=false
-          return (this.emptyUser()) //Leeren User als Ergebnis
-        }
-        if (res['data'][0].rechte)
-          res['data'][0].rechte = JSON.parse(res['data'][0].rechte);
-        else
-          res['data'][0].rechte = {};
-
-        this.currentUserSubject.next(res['data'][0])
-        return res['data'][0];
-      })
-    )
-*/
+    //Abgelaufener Token zum Testen:
+    //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjAwMDAwMDAwMDAiLCJleHAiOjE3NDA4OTU1OTB9.4AaGSbFXkbW8nISJ1qVQcTx-kthLQiBDlx0-dvhL16s
 
 
     return this.http.post<User>(queryurl, data).pipe(map(
       res => {
-        console.log(res)
-
         if (!res['data'][0]) {
           //User ist nicht mehr vorhanden, obwohl ein gültiges Token gesetzt. (Zwischenzeitlich aus der Datenbank gelöscht...)
           localStorage.removeItem('token'); //Token entfernen
@@ -159,9 +131,8 @@ console.log('data:',data,'queryurl:',queryurl);
 
       }),
       catchError(error => {
-          //Hier wird ein Fehler behandelt, der beim Versuch entsteht, die tabelle users zu lesen. (z.B. "Token expired")
-          console.log(error)
-          
+        //Hier wird ein Fehler behandelt, der beim Versuch entsteht, die tabelle users zu lesen. (z.B. "Token expired")
+        console.error(error)
         return (of(null))
       }
       ))
@@ -203,20 +174,20 @@ console.log('data:',data,'queryurl:',queryurl);
 
 
       this.LoggedinUserSubject.next(res !== null);
-      if (!anonymous){
+      if (!anonymous) {
         return this.getUserFromToken(res)
       }
-      else{
-        if(res){
-        const helper = new JwtHelperService();//https://github.com/auth0/angular2-jwt
+      else {
+        if (res) {
+          const helper = new JwtHelperService();//https://github.com/auth0/angular2-jwt
 
-        let data = helper.decodeToken(res).data;
+          let data = helper.decodeToken(res).data;
 
-        
 
-        return of(data);//wenn Anonym, dann DATA-Object
-        }else{
-          return of({id:null})
+
+          return of(data);//wenn Anonym, dann DATA-Object
+        } else {
+          return of({ id: null })
         }
       }
     }

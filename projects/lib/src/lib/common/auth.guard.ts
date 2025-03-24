@@ -20,14 +20,8 @@ import { User } from '../classes/user';
 })
 
 export class AuthGuard implements CanActivate {
-
   user: User
-
-
   constructor(public authenticationService: AuthenticationService, private router: Router, private alertService: AlertService, private config: DbconfigService) { }
-
-
-
 
   hasRole(role: any): Observable<boolean> {
     return this.authenticationService.current_User().pipe(
@@ -66,12 +60,10 @@ export class AuthGuard implements CanActivate {
 
 
   canActivate(activatedRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
-console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
     const expectedRole = activatedRoute.data['expectedRole'];
     let activateAllowed = true;
 
-    if (this.config?.configuration?.valid!==undefined) {
+    if (this.config?.configuration?.valid !== undefined) {
       if (!this.config.configuration.valid) {
         this.router.navigate(['/expired']); //Wenn nicht "configuration.valid" dann, Lizenz nicht OK ==> zur Seite "Expired"
         return false;

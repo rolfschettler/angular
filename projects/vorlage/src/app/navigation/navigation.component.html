@@ -1,30 +1,40 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item [routerLink]="['/login']">
-        <div *ngIf="!(currentUser | async)">
-          <span>Login</span>
-        </div>
+    <!-- <mat-toolbar>Menu</mat-toolbar> -->
+    
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/login']">
+          <div *ngIf="!(currentUser | async)">
+            <span>Login</span>
+          </div>
 
-        <div *ngIf="currentUser | async; let user">
-          <span *ngIf="user.username">Logout</span>
-          <span *ngIf="!user.username">Login</span>
-          <span style="font-size: small"> {{ user.username }} </span>
-        </div>
-      </a>
+          <div *ngIf="currentUser | async; let user">
+            <span *ngIf="user.username">Logout</span>
+            <span *ngIf="!user.username">Login</span>
+            <span style="font-size: small"> {{ user.username }} </span>
+          </div>
+        </a>
 
-      <a mat-list-item [routerLink]="['/home']">Home</a>
-      <a mat-list-item [routerLink]="['/info']">Info</a>
-      <!-- <a mat-list-item [routerLink]="['/info']" (click)="drawer.close()">Info</a> -->
+        <a mat-list-item [routerLink]="['/home']">Home</a>
+        <a mat-list-item [routerLink]="['/form']">Bootstrapform</a>
+        <a mat-list-item [routerLink]="['/info']">Info</a>
+        <a mat-list-item [routerLink]="['/sidesheet']">SiedeSheet</a>
+      </mat-nav-list>
 
-      <!-- <div class="logo">
-        <img src="assets/img/logo.svg" alt="Data-AL Logo" title="Data-AL" width="112px" />
-      </div> -->
 
-    </mat-nav-list>
+
+      <div class="circle" (click)="ChangeMode()" [matTooltip]=" (!isdark? 'Dunkler Modus':'Heller Modus')">
+        <mat-icon >
+          @if(isdark){light_mode}@else { nightlight}
+        </mat-icon>
+      </div>
+   
+
+
+
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       @if (isHandset$ | async) {
@@ -35,8 +45,13 @@
       <span>vorlage</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet></router-outlet>
-    
+
+
+    <div [attr.data-bs-theme]="isdark?'dark':''">
+
+      <router-outlet></router-outlet>
+    </div>
+
 
   </mat-sidenav-content>
 </mat-sidenav-container>

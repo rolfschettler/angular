@@ -1,57 +1,135 @@
+/* Importing Bootstrap SCSS file. */
+@use 'bootstrap/scss/bootstrap';
 @use "@angular/material" as mat;
+
+
+
+:root .error-snackbar {
+  @include mat.snack-bar-overrides((container-color: var(--mat-sys-error-container),
+      supporting-text-color: var(--mat-sys-on-error-container),
+      button-color:var(--mat-sys-primary)));
+}
+
+:root .success-snackbar {
+  @include mat.snack-bar-overrides((container-color: var(--mat-sys-surface),
+      supporting-text-color: ar(--mat-sys-on-surface),
+      button-color:var(--mat-sys-primary)));
+}
+
+
+
+.sidesheet {
+  @include mat.sidenav-overrides((
+    container-background-color:  var(--mat-sys-surface-container-low),
+    container-text-color:   var(--mat-sys-on-surface-container-low)
+  ));
+}
+
+
 
 //https://material.angular.io/guide/theming
 
 //https://material.angular.io/guide/system-variables
 
+
 html {
-  color-scheme: dark  ;
-  @include mat.theme(
-    (
-      color: mat.$azure-palette,
+  color-scheme: light;
+  @include mat.theme((color: mat.$blue-palette,
       typography: Roboto,
-      density: 0,
-    )
-  );
-}
+      density: 0));
 
-//   "@angular/material/prebuilt-themes/purple-green.css",
 
-// Customize the entire app. Change :root to your selector if you want to scope the styles.
-:root .error-snackbar {
-  @include mat.snack-bar-overrides(
-    (
-      container-color: var(--mat-sys-error-container),
-      supporting-text-color: var(--mat-sys-on-error-container),
-      button-color:var(--mat-sys-primary)
-    )
-  );
-}
-:root .success-snackbar {
-  @include mat.snack-bar-overrides(
-    (
-      container-color: var(--mat-sys-surface),
-      supporting-text-color: ar(--mat-sys-on-surface),
-      button-color:var(--mat-sys-primary)
-    )
-  );
+
 }
 
 
+
+html {
+  //Hintergrund Sidebar und gesamter Hintergrund
+  --mat-sys-surface: light-dark(#fcf8fd, #313131);
+  --mat-sys-background: light-dark(#fcf8fd, #313131);
+
+
+  //activer- hover- Satatus bei Mat-List
+  --mdc-list-list-item-hover-state-layer-color: light-dark(blue, silver);
+  --mdc-list-list-item-focus-state-layer-color: light-dark(blue, silver);
+
+
+  //Radius für Sidebar
+  .mat-drawer {
+    --mat-sys-corner-large: 0px;
+
+  }
+
+
+  --toolbar-height:64px;
+
+  @media (max-width: 599px) {
+    --toolbar-height: 56px;
+
+  }
+
+
+}
+
+
+.stickyheader{
+  background-color:light-dark(var(--mat-sys-surface),var(--mat-sys-surface-container-low));
+  position: sticky;
+  top:var(--toolbar-height);
+  color: var(--mat-sys-on-surface);
+  height: var(--toolbar-height);
+  display: flex;
+  align-items: center;
+  //border-radius: var(--mat-sys-corner-large);
+  
+  border-radius: 60px;
+  padding: 4px 24px;
+
+  @media (max-width: 599px) {
+    height: calc(100vh - var(--toolbar-height));
+    border-radius: 0px;
+    padding: 4px 24px;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+  }
+  
+  
+}
+
+
+
+
+
+
+
+
+body.dark {
+  color-scheme: dark;
+}
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-/*
-@import "bootstrap-grid.css";
-@import "bootstrap-utilities.css";
-*/
+
+body {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+/* Importing Bootstrap SCSS file. */
+
+
+
+
 
 .full-width {
   width: 100%;

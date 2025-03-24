@@ -68,6 +68,8 @@ export class DialogService {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = message;
+    dialogConfig.disableClose=true;
+    
     let dialogRef = this.dialog.open(CanceldialogComponent, dialogConfig);
 
     return dialogRef.afterClosed().pipe(map(value => { return value }));

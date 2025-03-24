@@ -1,4 +1,26 @@
-<H1>Home</H1>
+<div class="stickyheader">
+    <div>Home</div>
+    <button mat-raised-button>Button 1</button>
+    <button mat-button>Button 1</button>
+    <button mat-fab>Button 1</button>
+    <button mat-flat-button>Button 1</button>
 
-<button mat-button (click)=" SaveUser()">Save wit Error</button>
-<button mat-button (click)=" ShowConfirm()">Show Confirm</button>
+    <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>open_in_new</mat-icon>
+    </button>
+
+</div>
+<div class="container-fluid">
+
+
+
+
+    <!-- <button mat-button (click)=" SaveUser()">Save wit Error</button>
+    <button mat-button (click)=" ShowConfirm()">Show Confirm</button> -->
+
+    <div style="padding-left:16px">
+        <div *ngFor="let item of fillertest">
+            {{item}}
+        </div>
+    </div>
+</div>
