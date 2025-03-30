@@ -1,0 +1,31 @@
+<!-- Die Toolbar Componente (optional, siehe toolbar.component.ts) -->
+<toolbar [addvisible]=true (addclick)="newUser()" [searchvisible]=true (onsearch)="doSearch($event)"  (onclearsearch)="clearSearch()" 
+    [checkvisible]=false [closevisible]=false [sticky]=true> </toolbar>
+<div class="app_container">
+    <div style="padding: 24px;max-width: 400px;">
+        <!--Hier der Hauptcontent-->
+
+        <mat-list>
+            <mat-list-item *ngFor="let user of items |async  | filter : searchstring " id="{{user.id}}"
+                (click)="gotoUserId(user.id)" [class.selected]="selectedId==user.id">
+
+                <img matListAvatar src="assets\img\user.jpg" [id]="user.id">
+
+                <h2 matLine>{{user.username}} <span style="padding:2px;font-size:small" class="accentcolor"
+                        *ngIf="user.userrechte.administrator">Admin.</span></h2>
+
+                <p matLine>
+                    <span> {{user.vorname}} {{user.nachname}} </span>
+                </p>
+
+                <p matLine>
+                    <span> {{user.email}} </span>
+                </p>
+                <mat-icon class="rounded-circle" (click)="deleteUser($event,user)" *ngIf="user.id!=='0000000000'">
+                    delete_outline</mat-icon>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+
+        </mat-list>
+    </div>
+</div>

@@ -49,17 +49,14 @@ html {
   --mat-sys-surface: light-dark(#fcf8fd, #313131);
   --mat-sys-background: light-dark(#fcf8fd, #313131);
 
+  --mat-sidenav-container-background-color: light-dark(#fcf8fd, #313131);
+
 
   //activer- hover- Satatus bei Mat-List
-  --mdc-list-list-item-hover-state-layer-color: light-dark(blue, silver);
-  --mdc-list-list-item-focus-state-layer-color: light-dark(blue, silver);
+  // --mdc-list-list-item-hover-state-layer-color: light-dark(blue, silver);
+  // --mdc-list-list-item-focus-state-layer-color: light-dark(blue, silver);
 
 
-  //Radius für Sidebar
-  .mat-drawer {
-    --mat-sys-corner-large: 0px;
-
-  }
 
 
   --toolbar-height:64px;

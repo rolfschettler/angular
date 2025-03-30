@@ -3,7 +3,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <!-- <mat-toolbar>Menu</mat-toolbar> -->
     
-      <mat-nav-list>
+      <mat-nav-list style="margin:0 4px">
         <a mat-list-item [routerLink]="['/login']">
           <div *ngIf="!(currentUser | async)">
             <span>Login</span>

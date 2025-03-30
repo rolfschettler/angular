@@ -1,0 +1,161 @@
+<!-- Die Toolbar Componente (optional, siehe toolbar.component.ts) -->
+<toolbar [submitvisible]=true [checkvisible]=false [loading]=loading (closeclick)="onCancel()"> </toolbar>
+<div class="app_container">
+    <div class="form-small">
+
+        <form id="form" class="p-4" autocomplete="OFF" [formGroup]="Form" (submit)="onSubmit()">
+            <h2>Anmeldedaten</h2>
+
+            <div class="row">
+                <div class="col">
+                    <!--email -->
+                    <mat-form-field class="full-width" id="email">
+                        <input #email matInput placeholder="E-Mail" autocomplete="off" formControlName="email" maxlength="60">
+                        <mat-error *ngIf="Form.controls['email'].hasError('required')">
+                            E-Mail: Pflichtfeld
+                        </mat-error>
+                        <mat-error *ngIf="Form.controls['email'].hasError('AllreadyExists')">
+                            E-Mail: Diese E-Mail-Adresse ist bereits registriert
+                        </mat-error>
+                        <mat-error *ngIf="Form.controls['email'].hasError('invalidEmail')">
+                            Es muss eine gültige E-Mail-Adresse angegeben werden
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+
+            <!-- Passworteingabe -->
+            <div class="row">
+                <div class="col">
+                    <!--password -->
+                    <mat-form-field class="full-width" id="password">
+                        <input matInput placeholder="Passwort" type="password" autocomplete="new-password" formControlName="password" maxlength="60">
+                        <mat-error *ngIf="Form.controls['password'].hasError('required')">
+                            Passwort: Pflichtfeld
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+            <div class="row">
+                <div class="col">
+                    <!--password2 -->
+                    <mat-form-field class="full-width" id="password2">
+                        <input matInput placeholder="Passwort wiederholen" type="password" autocomplete="new-password" formControlName="password2" maxlength="60">
+                        <mat-error *ngIf="Form.controls['password2'].hasError('required')">
+                            Passwort wiederholen: Pflichtfeld
+                        </mat-error>
+                        <mat-error *ngIf="Form.controls['password2'].hasError('NoMatch')">
+                            Das Passwort muss korrekt wiederholt werden
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+
+            <!-- Benutzerinformationen -->
+
+            <h2>Benutzerinformationen</h2>
+
+            <div class="row  mt-4">
+                <div class="col">
+                    <!--username -->
+                    <mat-form-field class="full-width" id="username">
+                        <input #username matInput placeholder="Benutzername" autocomplete="new-password" type="text" formControlName="username" maxlength="60">
+                        <mat-error *ngIf="Form.controls['username'].hasError('required')">
+                            Benutzername: Pflichtfeld
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+
+
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col">
+                    <!--vorname -->
+                    <mat-form-field class="full-width" id="vorname">
+                        <input matInput placeholder="Vorname" autocomplete="off" formControlName="vorname" maxlength="60">
+                        <mat-error *ngIf="Form.controls['vorname'].hasError('required')">
+                            Vorname: Pflichtfeld
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+
+
+
+
+            <div class="row">
+                <div class="col">
+                    <!--nachname -->
+                    <mat-form-field class="full-width" id="nachname">
+                        <input matInput placeholder="Nachname" autocomplete="off" formControlName="nachname" maxlength="255">
+                        <mat-error *ngIf="Form.controls['nachname'].hasError('required')">
+                            Nachname: Pflichtfeld
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+
+            <div *ngIf="user" style="font-size: smaller;">Erstellt am: {{user.erstellungsdatum |date}}</div>
+
+
+            <h2>Berechtigungen</h2>
+            <!-- ----------------- Rechte ----------------------------------------- -->
+
+            <div *ngFor="let item of rechte">
+                <div class="row mt-2">
+                    <div class="col">
+                        <!--CHECKBOX-->
+                        <div style="min-width: 360px">
+                            <mat-checkbox formControlName={{item.recht}} id="{{item.recht}}">
+                                <span style="font-weight: 500;">{{item.label}}</span>
+
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                    <!--col-->
+                </div>
+                <!--row-->
+
+
+                <div class="row">
+                    <div class="col" style="padding-left: 36px;font-size: smaller;">
+                        {{item.description}}
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+        </form>
+
+
+
+
+    </div>
+</div>
