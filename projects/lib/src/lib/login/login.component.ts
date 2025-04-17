@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
     //MarkAllAsDirty (has Changed):
     Object.keys(form.form.controls).forEach((key) => {
       form.form.controls[key].pristine = false;
-      console.log(form.form.controls[key]);
+      
     });
 
 

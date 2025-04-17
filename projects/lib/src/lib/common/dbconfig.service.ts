@@ -11,7 +11,8 @@ export class DbconfigService {
   //public url = "http://localhost/restserver/index.php";
   //public url= "http://p559334.webspaceconfig.de/restserver/index.php";
 
-  public url: string= '/dataapi/index.php';
+ // public url: string= '/dataapi/index.php';
+ public url: string= '/konzeptapi/index.php';
  
  
   public configuration: any;

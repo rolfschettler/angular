@@ -8,12 +8,13 @@ import { FormBuilder, FormsModule, NgForm } from '@angular/forms';
 import { CommonModule, NgFor } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { first } from 'rxjs';
+import { UsertableComponent } from '../../../../sharedcomponents/src/app/usertable/usertable.component';
 
 
 
 @Component({
   selector: 'app-info',
-  imports: [CommonModule, FormsModule, MatSelectModule, MatButtonModule, MatDividerModule, MatIconModule],
+  imports: [CommonModule,UsertableComponent],
   templateUrl: './info.component.html',
   styleUrl: './info.component.css'
 })

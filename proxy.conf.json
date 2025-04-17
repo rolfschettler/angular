@@ -1,5 +1,5 @@
 {
-    "/dataapi": {
+    "/konzeptapi": {
       "target": "http://localhost",
       "secure": false
      

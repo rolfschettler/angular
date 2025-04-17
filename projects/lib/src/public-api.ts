@@ -4,6 +4,14 @@
 
 
 //customlib
+
+//customlib
+export * from './lib/custom/customlib';
+
+
+
+export * from './lib/custom/custom-validators';
+
 export * from './lib/common/pwdhash';
 
 
@@ -11,9 +19,10 @@ export * from './lib/common/dbconfig.service';
 
 
 export * from './lib/interceptor/httpauthinterseptor.service';
+
+
+
 export * from  './lib/interceptor/http-error.interceptor';
-
-
 
 export * from './lib/common/authentication.service';
 export * from './lib/common/auth.guard';
@@ -23,10 +32,6 @@ export * from './lib/login/login.component';
 
 
 export * from './lib/material/material.module';
-
-
-
-
 
 
 export * from './lib/alert/alert.component';

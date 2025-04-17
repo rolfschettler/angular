@@ -1,0 +1,186 @@
+<!-- Die Toolbar Componente (optional, siehe toolbar.component.ts) -->
+<!-- <toolbar [submitvisible]=true [checkvisible]=false [loading]=loading (closeclick)="onCancel()"> </toolbar> -->
+<div class="container">
+
+
+    <form id="form" class="p-4" style="max-width: 720px;" autocomplete="OFF" [formGroup]="Form" (submit)="onSubmit()">
+        <h4>Anmeldedaten</h4>
+
+        <div class="row">
+            <div class="col">
+                <!--email -->
+                <mat-form-field class="full-width" id="email" appearance=outline floatLabel="always">
+                    <mat-label>E-Mail</mat-label>
+                    <input #email matInput autocomplete="off" formControlName="email" maxlength="60">
+                    <mat-error *ngIf="Form.controls['email'].hasError('required')">
+                        E-Mail: Pflichtfeld
+                    </mat-error>
+                    <mat-error *ngIf="Form.controls['email'].hasError('AllreadyExists')">
+                        E-Mail: Diese E-Mail-Adresse ist bereits registriert
+                    </mat-error>
+                    <mat-error *ngIf="Form.controls['email'].hasError('invalidEmail')">
+                        Es muss eine gültige E-Mail-Adresse angegeben werden
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+
+        <!-- Passworteingabe -->
+        <div class="row">
+            <div class="col">
+                <!--password -->
+                <mat-form-field class="full-width" id="password" appearance=outline floatLabel="always">
+                    <mat-label>Passwort</mat-label>
+                    <input matInput type="password" autocomplete="new-password" formControlName="password"
+                        maxlength="60">
+                    <mat-error *ngIf="Form.controls['password'].hasError('required')">
+                        Passwort: Pflichtfeld
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+        <div class="row">
+            <div class="col">
+                <!--password2 -->
+                <mat-form-field class="full-width" id="password2" appearance=outline floatLabel="always">
+                    <mat-label>Passwort wiederholen</mat-label>
+                    <input matInput type="password" autocomplete="new-password" formControlName="password2"
+                        maxlength="60">
+                    <mat-error *ngIf="Form.controls['password2'].hasError('required')">
+                        Passwort wiederholen: Pflichtfeld
+                    </mat-error>
+                    <mat-error *ngIf="Form.controls['password2'].hasError('NoMatch')">
+                        Das Passwort muss korrekt wiederholt werden
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+        <!-- Benutzerinformationen -->
+
+        <h4>Benutzerinformationen</h4>
+
+        <div class="row  mt-4">
+            <div class="col">
+                <!--username -->
+                <mat-form-field class="full-width" id="username" appearance=outline floatLabel="always">
+                    <mat-label>Benutzername</mat-label>
+                    <input #username matInput autocomplete="new-password" type="text" formControlName="username"
+                        maxlength="60">
+                    <mat-error *ngIf="Form.controls['username'].hasError('required')">
+                        Benutzername: Pflichtfeld
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col">
+                <!--vorname -->
+                <mat-form-field class="full-width" id="vorname" appearance=outline floatLabel="always">
+                    <mat-label>Vorname</mat-label>
+                    <input matInput autocomplete="off" formControlName="vorname" maxlength="60">
+                    <mat-error *ngIf="Form.controls['vorname'].hasError('required')">
+                        Vorname: Pflichtfeld
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+
+
+
+        <div class="row">
+            <div class="col">
+                <!--nachname -->
+                <mat-form-field class="full-width" id="nachname" appearance=outline floatLabel="always">
+                    <mat-label>Nachname</mat-label>
+                    <input matInput autocomplete="off" formControlName="nachname" maxlength="255">
+                    <mat-error *ngIf="Form.controls['nachname'].hasError('required')">
+                        Nachname: Pflichtfeld
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+        <div *ngIf="user" style="font-size: smaller;">Erstellt am: {{user.erstellungsdatum |date}}</div>
+
+
+        <h4>Berechtigungen</h4>
+        <!-- ----------------- Rechte ----------------------------------------- -->
+
+        <div *ngFor="let item of rechte">
+            <div class="row mt-2">
+                <div class="col">
+                    <!--CHECKBOX-->
+                    <div style="min-width: 360px">
+                        <mat-checkbox formControlName={{item.recht}} id="{{item.recht}}">
+                            <span style="font-weight: 500;">{{item.label}}</span>
+
+                        </mat-checkbox>
+                    </div>
+                </div>
+                <!--col-->
+            </div>
+            <!--row-->
+
+
+            <div class="row">
+                <div class="col" style="padding-left: 36px;font-size: smaller;">
+                    {{item.description}}
+                </div>
+            </div>
+        </div>
+
+
+        @if (errormessage) {
+        <div class="row mb-2">
+            <div class="alert alert-danger" role="alert" style="padding:4px">
+                {{errormessage}}
+            </div>
+        </div>
+        }
+
+        <div class="row mb-2 mt-2">
+            <div class="col-md-4">
+                <button style="min-width: 200px;margin-bottom: 12px;" mat-raised-button type="submit">Speichern</button>
+            </div>
+            <!--col-->
+            <div class="col-md-4">
+                <button style="min-width: 200px;margin-bottom: 12px" mat-raised-button [disabled]="loading"
+                    type="button" (click)="onCancel()">Abbruch</button>
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
+    </form>
+
+
+
+
+</div>

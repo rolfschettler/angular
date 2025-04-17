@@ -1,0 +1,86 @@
+<!-- 
+
+
+<mat-list>
+    <mat-list-item *ngFor="let user of users |async "
+        (click)="gotoUserId(user.id)" [class.selected]="selectedId==user.id">
+
+        <img class="avatar" src="assets\img\user.jpg" [id]="user.id">
+
+        <h2 matLine>{{user.username}} <span style="padding:2px;font-size:small" class="accentcolor"
+                *ngIf="user.userrechte.administrator">Admin.</span></h2>
+
+        <p matLine>
+            <span> {{user.vorname}} {{user.nachname}} </span>
+        </p>
+
+        <p matLine>
+            <span> {{user.email}} </span>
+        </p>
+      <mat-icon class="rounded-circle" (click)="deleteUser($event,user)" *ngIf="user.id!=='0000000000'"> delete_outline</mat-icon> 
+        <mat-divider></mat-divider>
+    </mat-list-item>
+
+</mat-list>
+
+ -->
+
+
+
+<!-- https://getbootstrap.com/docs/5.0/layout/containers/ -->
+
+
+
+<div class="container-sm">
+
+    <h4>Benutzer</h4>
+    <!-- <div *ngFor="let item of users | async" style="margin:24px;"> -->
+
+    @for (item of users |async; track item) {
+
+    <mat-card class="card" appearance="outlined">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title>
+                    {{item.username}}
+                    <span style="padding:2px;font-size:small"
+                        *ngIf="item?.userrechte?.administrator">Administrator</span>
+
+                </mat-card-title>
+                <mat-card-subtitle>{{item.vorname}} {{item.nachname}}
+
+                </mat-card-subtitle>
+                <img mat-card-avatar src="\assets\img\user.jpg" [id]="item.id">
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            {{item.email}}
+
+
+
+        </mat-card-content>
+
+
+        <mat-card-actions>
+            <button mat-button class="fab" (click)="gotoUserId(item.id)">
+                <mat-icon>edit</mat-icon>Bearbeiten
+            </button>
+            @if(item.id !=='0000000000'){
+            <button mat-button class="fab" (click)="deleteUser(item.id)">
+                <mat-icon>delete</mat-icon>Löschen
+            </button>
+            }
+
+        </mat-card-actions>
+    </mat-card>
+
+    }
+
+
+    <button  mat-flat-button class="mt-4" (click)=" newUser()">
+        <mat-icon>add</mat-icon>Neuer Benutzer
+    </button>
+
+
+
+</div>

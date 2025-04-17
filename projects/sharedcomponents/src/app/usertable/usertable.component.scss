@@ -1,0 +1,27 @@
+
+  .example-card-footer {
+    padding: 16px;
+  }
+
+.avatar{
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.fab{
+  min-width:130px;
+}
+
+.card{
+  max-width: 400px;
+  min-width: 330px;
+  overflow: hidden;
+  margin-bottom: 8px;
+
+}
+
+
+

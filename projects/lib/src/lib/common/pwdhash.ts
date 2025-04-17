@@ -32,32 +32,4 @@ export async function hashPassword(password: string, salt: Uint8Array): Promise<
   }
 
 
-  /*
-
-salt = window.crypto.getRandomValues(new Uint8Array(16));
-hashedPassword=''
-
- hashpwd(){
-    (async () => {
-      
-      this.hashedPassword = await hashPassword("meinPasswort123", this.salt);
-      console.log("Passwort-Hash:", this.hashedPassword);
-    })();
-
-  }
-
-  checkpwd(){
-    (async () => {
-      try {
-        const isValid = await verifyPassword("meinPasswort123", this.salt, this.hashedPassword);
-        console.log("Passwort korrekt:", isValid);
-      } catch (error) {
-        console.error("Fehler beim Prüfen des Passworts:", error);
-      }
-    })();
-  }
-
-
-
-  */
   

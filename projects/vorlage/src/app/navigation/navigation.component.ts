@@ -44,7 +44,7 @@ export class NavigationComponent {
   ChangeMode() {
     this.document.body.classList.toggle('dark');
     this.isdark=this.document.body.classList.contains('dark');
-    console.log(this.document.body.classList,this.document.body.classList.contains('dark'));
+    
 
 }
 

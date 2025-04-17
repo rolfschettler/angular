@@ -11,7 +11,8 @@ import { map, mergeMap, flatMap } from 'rxjs/operators';
 
 import { Observable, of } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { User } from '../classes/user';
+import { User } from "./user";
+
 
 
 
