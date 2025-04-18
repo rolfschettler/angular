@@ -19,10 +19,8 @@
 
 
 .sidesheet {
-  @include mat.sidenav-overrides((
-    container-background-color:  var(--mat-sys-surface-container-low),
-    container-text-color:   var(--mat-sys-on-surface-container-low)
-  ));
+  @include mat.sidenav-overrides((container-background-color: var(--mat-sys-surface-container-low),
+      container-text-color: var(--mat-sys-on-surface-container-low)));
 }
 
 
@@ -46,8 +44,10 @@ html {
 
 html {
   //Hintergrund Sidebar und gesamter Hintergrund
-  --mat-sys-surface: light-dark(#fcf8fd, #313131);
-  --mat-sys-background: light-dark(#fcf8fd, #313131);
+
+
+  // --mat-sys-surface: light-dark(#fcf8fd, #313131);
+  // --mat-sys-background: light-dark(#fcf8fd, #313131);
 
   --mat-sidenav-container-background-color: light-dark(#fcf8fd, #313131);
 
@@ -59,41 +59,23 @@ html {
 
 
 
-  --toolbar-height:64px;
+  --toolbar-height: 64px;
 
   @media (max-width: 599px) {
     --toolbar-height: 56px;
 
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+      padding: 0;
+    }
   }
+
 
 
 }
 
 
-.stickyheader{
-  background-color:light-dark(var(--mat-sys-surface),var(--mat-sys-surface-container-low));
-  position: sticky;
-  top:var(--toolbar-height);
-  color: var(--mat-sys-on-surface);
-  height: var(--toolbar-height);
-  display: flex;
-  align-items: center;
-  //border-radius: var(--mat-sys-corner-large);
-  
-  border-radius: 60px;
-  padding: 4px 24px;
 
-  @media (max-width: 599px) {
-    height: calc(100vh - var(--toolbar-height));
-    border-radius: 0px;
-    padding: 4px 24px;
-    justify-content: space-between;
-    flex-direction: column-reverse;
-    overflow-y: auto;
-  }
-  
-  
-}
 
 
 

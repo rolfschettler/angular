@@ -13,6 +13,8 @@ import { CustomValidators,MaterialModule } from 'lib';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { map, Observable, shareReplay } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 
 
@@ -36,12 +38,15 @@ export class UsersformComponent implements OnInit {
   Form: FormGroup;
 
 
+ //private breakpointObserver = inject(BreakpointObserver);
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private usersService: UsersService,
     private formBuilder: FormBuilder,
-    private mailvalidator: MailValidator
+    private mailvalidator: MailValidator,
+    private breakpointObserver:BreakpointObserver
   ) {
 
     this.Form = this.formBuilder.group({
@@ -65,6 +70,13 @@ export class UsersformComponent implements OnInit {
 
   }
 
+isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Small)
+    .pipe(
+      map((result) => result.matches ),
+      shareReplay()
+    );
+
 
 
 
@@ -87,11 +99,10 @@ export class UsersformComponent implements OnInit {
 
     });
 
-    this.focusInput.nativeElement.focus();
-    //Der Defaultuser muss immer Admin-rechte besitzen.
+    // EHER STÖREND-> this.focusInput.nativeElement.focus();
+    //Der Defaultuser muss immer Admin-rechte behalten.
     if (this.id == '0000000000')
       this.Form.controls['administrator'].disable();
-
   }
 
 

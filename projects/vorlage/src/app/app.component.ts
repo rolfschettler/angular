@@ -5,13 +5,13 @@ import { map, shareReplay } from 'rxjs/operators';
 import { AuthenticationService,MaterialModule,} from 'lib';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
-import { UsersformModule } from './usersform/usersform.module';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [MaterialModule, CommonModule, NavigationComponent,UsersformModule],
+  imports: [MaterialModule, CommonModule, NavigationComponent],
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public currentUser: Observable<any>;

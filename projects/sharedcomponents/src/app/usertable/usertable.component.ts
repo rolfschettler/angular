@@ -11,7 +11,6 @@ import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, DbconfigService, DialogService } from 'lib';
 import { map, Observable } from 'rxjs';
-import { ObjectUnsubscribedErrorCtor } from 'rxjs/internal/util/ObjectUnsubscribedError';
 
 @Component({
   selector: 'shared-usertable',

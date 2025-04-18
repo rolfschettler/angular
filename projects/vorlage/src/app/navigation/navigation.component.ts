@@ -36,6 +36,7 @@ import { FormsModule } from '@angular/forms';
   ],
 })
 export class NavigationComponent {
+  allwaysCloseSidebar=true; //Die Navigation wird ausgeblendet, auch bei großen Monitoren
 
 
   private document = inject(DOCUMENT);
@@ -69,10 +70,15 @@ export class NavigationComponent {
     });
   }
 
+  /* 
+     https://blog.angular-university.io/angular-responsive-design/ 
+     https://material.angular.io/cdk/layout/overview
+  
+  */ 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
-      map((result) => result.matches),
+      map((result) => result.matches || this.allwaysCloseSidebar),
       shareReplay()
     );
 

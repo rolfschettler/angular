@@ -1,7 +1,10 @@
 <!-- Die Toolbar Componente (optional, siehe toolbar.component.ts) -->
 <!-- <toolbar [submitvisible]=true [checkvisible]=false [loading]=loading (closeclick)="onCancel()"> </toolbar> -->
 <div class="container">
-
+@if((isHandset$ | async)){
+    handset
+    
+}
 
     <form id="form" class="p-4" style="max-width: 720px;" autocomplete="OFF" [formGroup]="Form" (submit)="onSubmit()">
         <h4>Anmeldedaten</h4>
@@ -167,11 +170,11 @@
 
         <div class="row mb-2 mt-2">
             <div class="col-md-4">
-                <button style="min-width: 200px;margin-bottom: 12px;" mat-raised-button type="submit">Speichern</button>
+                <button class="buttons" mat-raised-button type="submit">Speichern</button>
             </div>
             <!--col-->
             <div class="col-md-4">
-                <button style="min-width: 200px;margin-bottom: 12px" mat-raised-button [disabled]="loading"
+                <button class="buttons" mat-raised-button [disabled]="loading"
                     type="button" (click)="onCancel()">Abbruch</button>
             </div>
             <!--col-->

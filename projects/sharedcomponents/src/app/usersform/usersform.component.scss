@@ -1,0 +1,11 @@
+.buttons {
+
+    min-width: 200px;
+    margin-bottom: 12px;
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+    }
+}
+
+
