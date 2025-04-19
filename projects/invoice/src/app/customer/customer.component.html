@@ -1,0 +1,145 @@
+﻿<div class="container-md" >
+    <div class="row customcolor" style="margin:0px">
+      <div class="col">
+        <h2 class=" align-middle" style="line-height: 40px;">Formular</h2>
+      </div>
+      <!--col-->
+
+    </div>
+    <!--row-->
+
+    <form class="p-4" [formGroup]="Form" #formDirective="ngForm" (submit)="onSubmit()">
+
+    <div class="row customrow">
+    <div class="col-md mb-2 customcol">
+<!--company_name -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="company_name" formControlName="company_name" maxlength="255">
+         <label for="company_name">Firmenname</label>
+         
+      </div>
+      @if (Form.controls['company_name'].hasError('required') && Form.controls['company_name'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Firmenname: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+</div> <!--row-->
+<div class="row customrow">
+    <div class="col-md mb-2 customcol">
+<!--country -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="country" formControlName="country" maxlength="100">
+         <label for="country">Land</label>
+         
+      </div>
+      @if (Form.controls['country'].hasError('required') && Form.controls['country'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Land: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+    <div class="col-md mb-2 customcol">
+<!--zip_code -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="zip_code" formControlName="zip_code" maxlength="20">
+         <label for="zip_code">Plz</label>
+         
+      </div>
+      @if (Form.controls['zip_code'].hasError('required') && Form.controls['zip_code'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Plz: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+</div> <!--row-->
+<div class="row customrow">
+    <div class="col-md mb-2 customcol">
+<!--city -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="city" formControlName="city" maxlength="100">
+         <label for="city">Ort</label>
+         
+      </div>
+      @if (Form.controls['city'].hasError('required') && Form.controls['city'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Ort: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+</div> <!--row-->
+<div class="row customrow">
+    <div class="col-md mb-2 customcol">
+<!--street -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="street" formControlName="street" maxlength="255">
+         <label for="street">Straße</label>
+         
+      </div>
+      @if (Form.controls['street'].hasError('required') && Form.controls['street'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Straße: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+</div> <!--row-->
+<div class="row customrow">
+    <div class="col-md mb-2 customcol">
+<!--payment_terms -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="payment_terms" formControlName="payment_terms" >
+         <label for="payment_terms">Zahlungsverienbarungen</label>
+         
+      </div>
+      @if (Form.controls['payment_terms'].hasError('required') && Form.controls['payment_terms'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Zahlungsverienbarungen: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+</div> <!--row-->
+<div class="row customrow">
+    <div class="col-md mb-2 customcol">
+<!--vat_number -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="vat_number" formControlName="vat_number" maxlength="50">
+         <label for="vat_number">Ust. - ID.</label>
+         
+      </div>
+      @if (Form.controls['vat_number'].hasError('required') && Form.controls['vat_number'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Ust. - ID.: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+    <div class="col-md mb-2 customcol">
+<!--tax_number -->
+      <div class="form-floating">
+         <input autocomplete="off"  type="text" class="form-control" id="tax_number" formControlName="tax_number" maxlength="50">
+         <label for="tax_number">Steuer Nr.</label>
+         
+      </div>
+      @if (Form.controls['tax_number'].hasError('required') && Form.controls['tax_number'].touched ) 
+          {
+          <div class="alert alert-danger" role="alert" style="height:34px;padding:4px"> Steuer Nr.: Pflichtfeld</div>
+          }
+    </div> <!--col-->
+</div> <!--row-->
+
+    @if (errormessage) { 
+        <div class="row mb-2">
+            <div class="alert alert-danger" role="alert" style="padding:4px">
+                {{errormessage}}
+            </div>
+        </div>
+      }
+
+
+        <div class="row mb-2 mt-2">
+            <div class="col-md-4">
+              <button style="min-width: 100%;margin-bottom: 12px;" mat-raised-button  type="submit">Speichern</button>
+            </div>
+            <!--col-->
+            <div class="col-md-4">
+              <button style="min-width: 100%;margin-bottom: 12px" mat-raised-button [disabled]="loading" type="button"
+                (click)="onCancel()">Abbruch</button>
+            </div>
+            <!--col-->
+          </div>
+          <!--row-->
+
+    </form>
+</div>

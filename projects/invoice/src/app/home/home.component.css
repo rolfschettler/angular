@@ -1,0 +1,15 @@
+.stickyheader {
+    background-color: light-dark(var(--mat-sys-tertiary-container), var(--mat-sys-surface-container-low));
+    position: sticky;
+    top: var(--toolbar-height);
+    color: var(--mat-sys-on-surface);
+    height: var(--toolbar-height);
+    display: flex;
+    align-items: center;
+    
+    border-radius: 60px;
+    padding: 4px 24px;
+     
+  
+  }
+  

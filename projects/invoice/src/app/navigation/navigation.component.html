@@ -1,0 +1,58 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <!-- <mat-toolbar>Menu</mat-toolbar> -->
+    
+      <mat-nav-list style="margin:0 4px">
+        <a mat-list-item [routerLink]="['/login']">
+          <div *ngIf="!(currentUser | async)">
+            <span>Login</span>
+          </div>
+
+          <div *ngIf="currentUser | async; let user">
+            <span *ngIf="user.username">Logout</span>
+            <span *ngIf="!user.username">Login</span>
+            <span style="font-size: small"> {{ user.username }} </span>
+          </div>
+        </a>
+        
+        <a mat-list-item [routerLink]="['/userslist']">Benutzerverwaltung</a>
+        <a mat-list-item [routerLink]="['/home']">Home</a>
+                <a mat-list-item [routerLink]="['/info']">Info</a>
+        <a mat-list-item [routerLink]="['/sidesheet']">SiedeSheet</a>
+        <a mat-list-item [routerLink]="['/customer/0']">Customer</a>
+      </mat-nav-list>
+
+
+
+      <div class="circle" (click)="ChangeMode()" [matTooltip]=" (!isdark? 'Dunkler Modus':'Heller Modus')">
+        <mat-icon >
+          @if(isdark){light_mode}@else { nightlight}
+        </mat-icon>
+      </div>
+   
+
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+      <span>Invoice</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+
+
+    <div [attr.data-bs-theme]="isdark?'dark':''">
+
+      <router-outlet></router-outlet>
+    </div>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

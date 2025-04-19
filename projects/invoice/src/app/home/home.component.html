@@ -1,0 +1,116 @@
+<div class="container">
+
+    <div
+        style="position: sticky; top: var(--toolbar-height);     background-color: var(--mat-sys-background); margin-bottom:8px ">
+        <div class="stickyheader">
+            @if(isHandset$ |async)
+            { small Screen}
+            @else {
+            wide Screen
+            }
+        </div>
+    </div>
+
+
+    <div class="row mb-4">
+        <div class="col-2">
+            <!-- Logo aus assets der lib -->
+            <img src="assets/img/rslogo.svg" alt="Logo" title="RS Logo" width="100%">
+        </div>
+
+        <div class="col-10">
+            <div>
+                Pack ma's....
+            </div>
+
+            <div *ngFor="let content of fillerContent">
+                {{content}}
+
+            </div>
+            <div>
+                Hama's wiada....
+            </div>
+        </div>
+    </div>
+
+
+   
+        <div class="row my-1">
+            <div class="col">
+                Hier eine formatierte Dezimalzahl : {{zahl | currency}}
+                <!-- Standard-Pipe -->
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col">
+                Hier der Pfad zum Backend: {{path}}
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col">
+                Hier ein Datum: {{datum | date:" dd. LLLL, YYYY" }}
+                <!-- Standard-Pipe: https://angular.io/api/common/DatePipe -->
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col">
+                Hier die Uhrzeit: {{datum | date:"hh:mm" }}
+                <!-- Custom-pipe -->
+            </div>
+        </div>
+
+
+
+        <div class="row mb-1">
+            <div class="col">
+                Ein Gruß aus der Custom-lib: {{hallo}}
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col">
+                Angemeldet:{{ loggedin?' Ja':' Nein'}}
+            </div>
+        </div>
+
+
+        <div class="row mb-1">
+            <div class="col">
+                Adminstratorrechte:{{ isadmin?' Ja':' Nein'}}
+            </div>
+        </div>
+
+        <div *ngIf="loggedin">
+            Und hier die User aus der Datenbank:
+        </div>
+
+        <div *ngFor="let user of users">
+            - {{user.username}}
+        </div>
+
+
+
+     <div class="row">
+
+        <div class="col">
+            <button mat-raised-button (click)="openDialog()">Open Dialog</button>
+        </div>
+
+        <div class="col">
+            <button mat-raised-button (click)="ShowInputDialog()">Input Dialog</button>
+        </div>
+
+        <div class="col">
+            <button mat-raised-button (click)="YesOrNo()">Ja oder Nein</button>
+            <div>{{antwort}}  {{antwort? 'hast Du gesagt' :''}} </div>
+        </div>
+
+
+
+
+     </div>
+
+</div>

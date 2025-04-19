@@ -10,7 +10,8 @@
     "serve:ssr:test": "node dist/test/server/server.mjs",
     "build_lib": "ng build --project=lib",
     "build_vorlage": "ng build --project=vorlage --configuration production --aot --output-hashing=all --base-href /vorlage/",
-    "build_all": "npm run build_lib && npm run build_vorlage"
+    "build_invoice": "ng build --project=invoice --configuration production --aot --output-hashing=all --base-href /invoice/",
+    "build_all": "npm run build_lib && npm run build_vorlage && npm run build_invoice"
   },
   "private": true,
   "dependencies": {

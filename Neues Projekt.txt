@@ -1,0 +1,121 @@
+"architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/vorlage",
+            "index": "projects/vorlage/src/index.html",
+            "browser": "projects/vorlage/src/main.ts",
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"        ==>>>>>>>>>>>>>> Einfügen
+            ],
+
+            "allowedCommonJsDependencies": [  ==>>>>>>>>>>>>>> Einfügen
+              "moment",	                      ==>>>>>>>>>>>>>> Einfügen
+              "crypto-js"                    ==>>>>>>>>>>>>>> Einfügen
+           ],                                ==>>>>>>>>>>>>>> Einfügen
+
+
+…
+.
+.
+.
+.
+
+
+      "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": { "proxyConfig": "proxy.conf.json" },        ==>Einfügen (sonst findet di App das Backend nicht)
+          "configurations": {
+
+
+…
+…
+…
+..
+  =====>>>assets uns styles anpassen: 
+  "assets": [
+
+              {
+                "glob": "**/*",
+                "input": "projects/lib/assets",
+                "output": "/assets/"
+              },
+
+              {
+                "glob": "**/*",
+                "input": "projects/NEW_PROJECTDIR/src/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/NEW_PROJECTDIR/public",
+                 "output": "/assets/"
+              }
+             
+
+            ],
+            "styles": [
+            
+              "projects/styles/styles.scss",
+              "projects/NEW_PROJECTDIR/src/styles.scss"
+            ],
+….
+…
+…
+
+
+   "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5MB", ==>>>>>>>>anpassen
+                  "maximumError": "5MB"   ==>>>>>>>>anpassen
+                },
+
+
+
+
+
+
+
+"test": {
+
+
+  ==>>>>>>>>>>>assets und styles anpassen	
+
+  "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/NEW_PROJECTDIR/src/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/dist/lib/assets",
+                "output": "/assets/"
+              }              
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "projects/NEW_PROJECTDIR/src/styles.scss"
+            ],
+
+
+
+
+
+
+}
+
+
+DANACH PACKAGE.JSON anpassen:
+
+
+ "build_lib": "ng build --project=lib",
+    "build_vorlage": "ng build --project=vorlage --configuration production --aot --output-hashing=all --base-href /vorlage/",
+    "build_NEW_PROJECTDIR": "ng build --project=NEW_PROJECTDIR --configuration production --aot --output-hashing=all --base-href /NEW_PROJECTDIR/",
+    "build_all": "npm run build_lib && npm run build_vorlage && npm run build_NEW_PROJECTDIR"
+
+

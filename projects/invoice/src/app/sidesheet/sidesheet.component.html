@@ -1,0 +1,49 @@
+<!-- https://m3.material.io/components/side-sheets/guidelines -->
+
+
+<div class="container-fluid">
+
+    <mat-toolbar class="example-toolbar">
+
+
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>filter_alt</mat-icon></button>
+
+    </mat-toolbar>
+
+
+
+
+    <mat-sidenav-container hasBackdrop=false class="example-container sidesheet">
+        <mat-sidenav #snav position="end" mode="push" class="sidenav">
+            <div class="sidesheetbar">
+                <div>Filter</div>
+                <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>close</mat-icon></button> -->
+                <mat-icon (click)="snav.toggle()">close</mat-icon>
+            </div>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+            <mat-nav-list>1Start content </mat-nav-list>
+
+        </mat-sidenav>
+        <div class="innercontainer">
+
+            <p> xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx </p>
+            <p> xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx </p>
+            <p> xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx </p>
+            <p> xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx </p>
+            <p> xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx </p>
+        </div>
+
+
+
+    </mat-sidenav-container>
+
+
+</div>
